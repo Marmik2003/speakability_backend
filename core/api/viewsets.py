@@ -43,7 +43,8 @@ class ActionDetailViewSet(
 
     def _convert_to_speech(self, text, language):
         subscription_key = AZURE_SPEECH_KEY
-        speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region='centralindia', speech_recognition_language=language)
+        speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region='centralindia')
+        speech_config.speech_synthesis_language = language
         synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
 
         result = synthesizer.speak_text_async(text).get()
