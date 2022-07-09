@@ -17,7 +17,7 @@ env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DJANGO_READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=True)
+DJANGO_READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
 if DJANGO_READ_DOT_ENV_FILE:
     env.read_env(str(BASE_DIR / '.env'))
 
@@ -34,7 +34,7 @@ DEBUG = env.bool('DJANGO_DEBUG', default=True)
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
 
-USE_AZURE_STORAGE = env.bool('USE_AZURE_STORAGE', default=True)
+USE_AZURE_STORAGE = env.bool('USE_AZURE_STORAGE', default=False)
 
 
 # Application definition

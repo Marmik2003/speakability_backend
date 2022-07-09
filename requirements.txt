@@ -3,3 +3,5 @@
 psycopg2-binary==2.9.3
 django-storages==1.12.3
 django-storages-azure==1.6.8
+azure-core==1.24.2
+azure-storage-blob==12.13.0
