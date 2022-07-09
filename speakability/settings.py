@@ -108,15 +108,18 @@ if env.bool('DJANGO_DATABASE_USE_SQLITE', default=True):
         }
     }
 else:
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': env('DJANGO_DATABASE_NAME'),
+    #         'USER': env('DJANGO_DATABASE_USER'),
+    #         'PASSWORD': env('DJANGO_DATABASE_PASSWORD'),
+    #         'HOST': env('DJANGO_DATABASE_HOST'),
+    #         'PORT': env('DJANGO_DATABASE_PORT'),
+    #     }
+    # }
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DJANGO_DATABASE_NAME'),
-            'USER': env('DJANGO_DATABASE_USER'),
-            'PASSWORD': env('DJANGO_DATABASE_PASSWORD'),
-            'HOST': env('DJANGO_DATABASE_HOST'),
-            'PORT': env('DJANGO_DATABASE_PORT'),
-        }
+        'default': env.db('DATABASE_URL')
     }
 
 
@@ -202,3 +205,28 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+if env.bool('USE_LOGGING', default=False):
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+        "formatters": {
+            "verbose": {
+                "format": "%(levelname)s %(asctime)s %(module)s "
+                "%(process)d %(thread)d %(message)s"
+            }
+        },
+        "handlers": {
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "verbose",
+            },
+        },
+        "root": {"level": "INFO", "handlers": ["console"]},
+        "loggers": {
+        },
+    }
+
