@@ -26,12 +26,12 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Speakability API",
       default_version='v1',
-      description="Titleguru API documentation",
+      description="Speakability API documentation",
       contact=openapi.Contact(email="marmik@thedataboy.com"),
       license=openapi.License(name="Infiknox Limited"),
    ),
    public=True,
-   permission_classes=(permissions.IsAdminUser,),
+   permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [

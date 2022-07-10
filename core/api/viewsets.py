@@ -51,7 +51,7 @@ class ActionDetailViewSet(
         file_bytes = io.BytesIO(result.audio_data)
         return ContentFile(file_bytes.getvalue(), name=f"{language}-{text}.wav")
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         language = serializer.validated_data['language']
